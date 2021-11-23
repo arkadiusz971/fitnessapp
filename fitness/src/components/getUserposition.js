@@ -26,12 +26,7 @@ const GetUserPosition = () => {
     const getPosition = () => navigator.geolocation.getCurrentPosition(locatingSuccess, locatingError, locatingOptions)
   
     return (
-      <div className="App">
-        <button onClick={getPosition}>Start</button>
-        <p>User altitude {userPosition.altitude}</p>
-        <p>User latitude {userPosition.latitude}</p>
-        <p>User longitude {userPosition.longitude}</p>
-      </div>
+      <div></div>
     )
 }
 
