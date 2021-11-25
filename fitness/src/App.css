@@ -1,4 +1,18 @@
 .leaflet-container {
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
+}
+
+button {
+    height: 10vh;
+    width: 50vw;
+    background-color: rgb(252, 120, 59);
+    color: white;
+    font-weight: bold;
+    border: 2px solid rgb(112, 112, 112);
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: rgb(252, 93, 19);
 }
