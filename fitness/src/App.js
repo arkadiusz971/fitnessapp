@@ -1,11 +1,12 @@
 import React from 'react'
-// import GetUserPosition from './components/getUserPosition'
-import LeafletMap from './components/leaflet/map'
+import LeafletMap from './components/leaflet/LeafletMap'
 import './App.css'
 
 function App() {
   return (
+    <div className="App">
       <LeafletMap />
+    </div>
   )
 }
 
