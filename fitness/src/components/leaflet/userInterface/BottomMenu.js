@@ -1,10 +1,15 @@
 import React from "react"
+import InitializeTracking from "./InitializeTracking"
 
 const BottomMenu = () => {
 
+    const handleRecordWorkout = () => {
+        InitializeTracking()
+    }
+
     return (
         <div className="bottomMenu">
-            <button>Start</button>
+            <button onClick={handleRecordWorkout}>Record</button>
             <button>Stop</button>
         </div>
     )
