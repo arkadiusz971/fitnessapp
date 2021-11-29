@@ -5,7 +5,7 @@ const BottomMenu = () => {
     return (
         <div className="bottomMenu">
             <button>Start</button>
-            <button>Start</button>
+            <button>Stop</button>
         </div>
     )
 }
