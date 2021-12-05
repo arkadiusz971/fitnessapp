@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from 'react'
-import { Marker, useMap } from 'react-leaflet'
+const userPosition = []
 
+export const WatchUserPosition = (map) => {
+  map.locate({
+    watch: true,
+    enableHighAccuracy: true
+  }).on("locationfound", e => {
+    if (!userPosition.length) {
+      userPosition[0] = e.latlng
+    }
+    if (userPosition[userPosition.length - 1].lat !== e.latlng.lat && userPosition[userPosition.length - 1].lng !== e.latlng.lng) {
+      userPosition[0] = e.latlng
+    }
+  }).on("locationerror", () => console.error("GPS error occured..."))
 
-const GetUserPosition = () => {
-  const [userPosition, setPosition] = useState(null)
-  let map = useMap()
-
-  useEffect(() => {
-    map.locate().once("locationfound", e => {
-      setPosition(e.latlng)
-      map.setView(e.latlng, 18)
-    }).once("locationerror", () => alert("Location error"))
-  }, [map])
-
-  return userPosition === null ? null : (
-    <Marker position={userPosition} className="currentPosition">
-    </Marker>
-  )
+  return userPosition
 }
 
-export default GetUserPosition
+export const GetLastPosition = () => {
+  if(userPosition[0]===undefined){
+
+  }
+}

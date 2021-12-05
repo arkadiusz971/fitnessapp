@@ -1,18 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
-import GetUserPosition from './GetUserPosition'
-import DrawTrack from '../DrawTrack'
-
+import BottomMenu from '../userInterface/BottomMenu'
 const LeafletMap = () => {
+    const [map, setMap] = useState(null)
+
+    const sendMap = () => {
+        return map === null ? null : map
+    }
+
     return (
-        <MapContainer center={[0, 0]} zoom={15} scrollWheelZoom={true}>
-            <GetUserPosition />
-            <TileLayer
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <DrawTrack />
-        </MapContainer>
+        <div>
+            <MapContainer
+                center={[0, 0]}
+                zoom={2}
+                scrollWheelZoom={true}
+                whenCreated={setMap}
+            >
+                <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+            </MapContainer>
+
+            <BottomMenu map={sendMap} />
+        </div>
+
     )
+
 }
 export default LeafletMap

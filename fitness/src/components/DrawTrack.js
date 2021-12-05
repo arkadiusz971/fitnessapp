@@ -1,33 +1,23 @@
 import { polyline } from "leaflet"
-import { useEffect } from "react"
-import {useMap } from "react-leaflet"
+import { WatchUserPosition } from "./leaflet/GetUserPosition"
 
+const DrawTrack = (map) => {
+    let positions = []
+    let userPosition = WatchUserPosition(map)
 
-const DrawTrack = (props) => {
-
-    const map = useMap()
-
-    const positions = [{ lat: 50.062690, lng: 19.936892 }]
-
-    const updatePolyline = () => {
-        map.locate({
-            watch: true,
-            enableHighAccuracy: true
-        }).on("locationfound", e => {
-
-            if (positions[positions.length - 1].lat !== e.latlng.lat && positions[positions.length - 1].lng !== e.latlng.lng) {
-                positions.push(e.latlng)
-                map.addLayer(polyline(positions))
-                map.setView(e.latlng, 18)
-            }
-        }).once("locationerror", () => alert("GPS error occured..."))
+    const drawPolyline = () => {
+        map.addLayer(polyline(positions))
     }
 
-    useEffect(updatePolyline)
+    setInterval(() => {
+        if (userPosition.length !== 0) {
+            console.log(userPosition[0])
+            positions.push(userPosition[0])
+            drawPolyline()
+        }
+    }, 500)
 
-    return (
-        null
-    )
+    return positions[0]
 }
 
 export default DrawTrack
